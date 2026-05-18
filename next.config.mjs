@@ -1,12 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Important for GitHub Pages
-  output: 'export',           // This creates the 'out' folder
-  basePath: '/Matchio',       // Must match your repository name
+  output: 'export',
+  basePath: '/Matchio',       // Important : doit correspondre au nom de ton repo
   images: {
-    unoptimized: true,        // Required when using static export
+    unoptimized: true,
   },
-  trailingSlash: true,        // Recommended for GitHub Pages
+  trailingSlash: true,
 };
 
 export default nextConfig;
