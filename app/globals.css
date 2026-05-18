@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+ :root {
+ /* Primary palette */
+ --matcha-deep: #0E3B2E;
+ --matcha-mid: #3A6B4F;
+ --matcha-soft: #A8C6A1;
+ --matcha-mist: #DCE8DA;
+ --cream: #F5F1E8;
+ --cream-dark: #E8E2D0;
+ --clay: #C9A27E;
+ --clay-dark: #A88561;
+ --ink: #1A1A1A;
+ --ink-soft: #4A4A4A;
+ --ink-muted: #8C8C8C;
+ }
+
+ * {
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ }
+
+ html {
+ background: var(--cream);
+ color: var(--ink);
+ font-feature-settings: 'ss01', 'cv01';
+ }
+
+ body {
+ font-family: var(--font-inter), system-ui, sans-serif;
+ line-height: 1.6;
+ overflow-x: hidden;
+ }
+
+ h1, h2, h3, h4, h5, h6 {
+ font-family: var(--font-playfair), Georgia, serif;
+ font-style: italic;
+ font-weight: 400;
+ letter-spacing: -0.01em;
+ line-height: 1.1;
+ }
+
+ ::selection {
+ background: var(--matcha-deep);
+ color: var(--cream);
+ }
+
+ /* Focus visible */
+ *:focus-visible {
+ outline: 2px solid var(--clay);
+ outline-offset: 2px;
+ border-radius: 2px;
+ }
+
+ /* Lenis smooth scroll setup */
+ html.lenis,
+ html.lenis body {
+ height: auto;
+ }
+
+ .lenis.lenis-smooth {
+ scroll-behavior: auto !important;
+ }
+
+ .lenis.lenis-smooth [data-lenis-prevent] {
+ overscroll-behavior: contain;
+ }
+
+ .lenis.lenis-stopped {
+ overflow: hidden;
+ }
+}
+
+@layer components {
+ .container-wide {
+ @apply mx-auto w-full max-w-wide px-6 md:px-10 lg:px-16;
+ }
+
+ .container-narrow {
+ @apply mx-auto w-full max-w-narrow px-6 md:px-10;
+ }
+
+ .container-editorial {
+ @apply mx-auto w-full max-w-editorial px-6 md:px-0;
+ }
+
+ .eyebrow {
+ @apply font-sans text-eyebrow font-semibold uppercase tracking-[0.2em] text-clay;
+ }
+
+ .display-xl {
+ @apply font-display italic text-[clamp(3rem,8vw,7rem)] leading-[0.95] tracking-tight;
+ }
+
+ .display-lg {
+ @apply font-display italic text-[clamp(2.5rem,6vw,5rem)] leading-[1.0] tracking-tight;
+ }
+
+ .display-md {
+ @apply font-display italic text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] tracking-tight;
+ }
+
+ .display-sm {
+ @apply font-display italic text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.2] tracking-tight;
+ }
+
+ .lead {
+ @apply text-lg md:text-xl text-ink-soft leading-relaxed;
+ }
+
+ .body-text {
+ @apply text-base md:text-[1.0625rem] text-ink leading-[1.7];
+ }
+
+ .divider-gold {
+ @apply mx-auto h-px w-10 bg-clay;
+ }
+
+ /* Reveal animation utilities, used with IntersectionObserver */
+ .reveal {
+ opacity: 0;
+ transform: translateY(40px);
+ transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+ transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+ }
+
+ .reveal.is-visible {
+ opacity: 1;
+ transform: translateY(0);
+ }
+
+ .reveal-stagger > * {
+ opacity: 0;
+ transform: translateY(30px);
+ transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+ transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+ }
+
+ .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+ .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+ .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+ .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+ .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+ .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; }
+
+ .reveal-stagger.is-visible > * {
+ opacity: 1;
+ transform: translateY(0);
+ }
+
+ /* Underline link */
+ .link-underline {
+ position: relative;
+ display: inline-block;
+ }
+
+ .link-underline::after {
+ content: '';
+ position: absolute;
+ left: 0;
+ bottom: -2px;
+ height: 1px;
+ width: 100%;
+ background: currentColor;
+ transform: scaleX(0);
+ transform-origin: left;
+ transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+ }
+
+ .link-underline:hover::after {
+ transform: scaleX(1);
+ }
+
+ /* Marquee/ticker */
+ .ticker {
+ display: flex;
+ width: max-content;
+ animation: ticker 30s linear infinite;
+ }
+
+ .ticker:hover {
+ animation-play-state: paused;
+ }
+}
+
+@layer utilities {
+ .text-balance {
+ text-wrap: balance;
+ }
+
+ .text-pretty {
+ text-wrap: pretty;
+ }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+ *,
+ *::before,
+ *::after {
+ animation-duration: 0.01ms !important;
+ animation-iteration-count: 1 !important;
+ transition-duration: 0.01ms !important;
+ scroll-behavior: auto !important;
+ }
+
+ .reveal,
+ .reveal-stagger > * {
+ opacity: 1 !important;
+ transform: none !important;
+ }
+}

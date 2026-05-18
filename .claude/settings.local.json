@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /b)",
+      "Bash(npm --version)",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell(Test-Path \"C:\\\\Program Files\\\\nodejs\\\\node.exe\"; Test-Path \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs\\\\node.exe\"; Test-Path \"$env:APPDATA\\\\nvm\"; Test-Path \"C:\\\\nvm4w\\\\nodejs\\\\node.exe\")",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; node --version; npm --version)",
+      "Bash(ls \"C:\\\\Users\\\\user\\\\Desktop\\\\Matchio\\\\matchio website update\")",
+      "Bash(find \"C:\\\\Users\\\\user\\\\Desktop\\\\Matchio\" -name \"HERO_IMPLEMENTATION.md\" 2>/dev/null)"
+    ]
+  }
+}
