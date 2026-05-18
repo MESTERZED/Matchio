@@ -25,3 +25,6 @@ export function slugify(input: string): string {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 }
+
+// BasePath pour GitHub Pages
+export const basePath = process.env.NODE_ENV === 'production' ? '/Matchio' : '';
