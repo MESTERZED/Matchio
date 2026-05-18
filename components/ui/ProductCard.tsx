@@ -39,7 +39,7 @@ export function ProductCard({ product, className, showQuickAdd = true, badge }: 
         className="block relative aspect-[16/10] overflow-hidden bg-cream-dark/20"
       >
         <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]">
-          <ProductImage product={product} size="card" />
+          <ProductImage productId={product.id} className="w-full h-full object-cover" />
         </div>
       </Link>
 

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { basePath } from '@/lib/utils';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Button } from '@/components/ui/Button';
 import { Reveal } from '@/components/animations/Reveal';
@@ -9,52 +10,51 @@ import { ecoStats } from '@/lib/data/eco-stats';
 export const metadata = {
   title: 'Refill, Un rituel. Aucune trace.',
   description:
-    'Heritage Box + Refill Pack + Consigne. Le système circulaire qui élimine les capsules jetables. Sans aluminium, sans plastique, sans compromis.',
+    'Heritage Box + Refill Pack + Consigne. Le système circulaire qui élimine les capsules jetables.',
 };
 
 const consigneSteps = [
   {
     num: '01',
     title: 'Vous achetez la Heritage Box',
-    text: 'Mug-bol en grès de Limoges, chasen Takayama, doseur, 30 doses incluses. Un objet permanent.',
-    image: '/images/products/06-heritage-box-unboxing.png',
+    text: 'Mug-bol en grès de Limoges, chasen Takayama, doseur, 30 doses incluses.',
+    image: `${basePath}/images/products/06-heritage-box-unboxing.png`,
   },
   {
     num: '02',
     title: 'Chaque mois, un Refill Pack',
-    text: '30 doses pré-mesurées en sachet kraft compostable. Sans capsule, sans plastique, à composter à la maison.',
-    image: '/images/products/07-capsule-isolated.png',
+    text: '30 doses pré-mesurées en sachet kraft compostable.',
+    image: `${basePath}/images/products/07-capsule-isolated.png`,
   },
   {
     num: '03',
     title: 'Renvoyez la boîte usée',
-    text: 'Quand votre Heritage Box est marquée par les ans, glissez-la dans l\'enveloppe pré-affranchie. Crédit de 10 €.',
-    image: '/images/products/05-heritage-box-flatlay.png',
+    text: 'Quand votre Heritage Box est marquée par les ans, glissez-la dans l\'enveloppe pré-affranchie.',
+    image: `${basePath}/images/products/05-heritage-box-flatlay.png`,
   },
 ];
 
 const consignePractical = [
   { step: 'Étape 1', text: 'Demandez votre étiquette de retour gratuite depuis votre compte.' },
-  { step: 'Étape 2', text: 'Glissez la Heritage Box vide dans son carton d\'origine, ou l\'enveloppe Mondial Relay fournie.' },
+  { step: 'Étape 2', text: 'Glissez la Heritage Box vide dans son carton d\'origine.' },
   { step: 'Étape 3', text: 'Déposez-la en point relais. Trajet pris en charge.' },
-  { step: 'Étape 4', text: 'Notre atelier nettoie, vérifie, remet en circulation. Vous recevez 10 € de crédit immédiat.' },
+  { step: 'Étape 4', text: 'Notre atelier nettoie et vous recevez 10 € de crédit.' },
 ];
 
 export default function RefillPage() {
   return (
     <>
-      {/* Hero immersif plein écran avec photo */}
+      {/* Hero immersif */}
       <section className="relative bg-matcha-deep text-cream min-h-screen flex items-end pt-32 pb-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/products/03-refill-pack-hero.png"
-            alt="Heritage Box Matchio ouverte avec bol matcha, chasen et accessoires"
+            src={`${basePath}/images/products/03-refill-pack-hero.png`}
+            alt="Heritage Box Matchio ouverte avec bol matcha"
             fill
             priority
             sizes="100vw"
             className="object-cover object-center"
           />
-          {/* Vignettage doux pour lisibilité du texte */}
           <div className="absolute inset-0 bg-gradient-to-t from-matcha-deep via-matcha-deep/60 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-matcha-deep/70 via-transparent to-transparent" />
         </div>
@@ -67,8 +67,7 @@ export default function RefillPage() {
               Aucune trace.
             </h1>
             <p className="mt-8 max-w-md text-lg md:text-xl text-cream/85 leading-relaxed">
-              Une seule boîte, à vie. Une recharge mensuelle, compostable. Une consigne, à
-              chaque cycle. Le système circulaire qui ferme la boucle.
+              Une seule boîte, à vie. Une recharge mensuelle, compostable.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Button href="/produit/heritage-box" variant="primary" size="lg">
@@ -82,7 +81,7 @@ export default function RefillPage() {
         </div>
       </section>
 
-      {/* Comment ça marche, avec photos */}
+      {/* Comment ça marche */}
       <section className="bg-cream py-24 md:py-32">
         <div className="container-wide">
           <Reveal>
@@ -101,7 +100,7 @@ export default function RefillPage() {
                     alt={step.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
                 </div>
                 <div className="border-t border-matcha-deep/20 pt-6">
@@ -120,7 +119,7 @@ export default function RefillPage() {
       {/* Calculateur */}
       <RefillCalculator />
 
-      {/* Consigne en pratique avec image overhead */}
+      {/* Consigne en pratique */}
       <section id="consigne" className="bg-cream py-24 md:py-32">
         <div className="container-wide grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <Reveal>
@@ -129,11 +128,8 @@ export default function RefillPage() {
               La consigne en pratique.
             </h2>
             <p className="mt-8 max-w-xl text-ink-soft leading-relaxed">
-              Quatre étapes simples, prises en charge à chaque maillon. Vous récupérez
-              10 € de crédit dès que la boîte arrive à l&apos;atelier, utilisable sur votre
-              prochain Refill ou tout autre produit.
+              Quatre étapes simples, prises en charge à chaque maillon.
             </p>
-
             <Reveal stagger className="mt-10 space-y-4">
               {consignePractical.map((p, i) => (
                 <div key={i} className="flex gap-6 p-5 border border-cream-dark hover:border-matcha-deep/30 transition-colors">
@@ -148,8 +144,8 @@ export default function RefillPage() {
 
           <Reveal className="relative h-[500px] md:h-[640px]">
             <Image
-              src="/images/products/06-heritage-box-unboxing.png"
-              alt="Heritage Box avec ritual card et sachets, vue overhead"
+              src={`${basePath}/images/products/06-heritage-box-unboxing.png`}
+              alt="Heritage Box avec ritual card"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
@@ -183,9 +179,6 @@ export default function RefillPage() {
             </p>
             <p className="mt-4 text-sm uppercase tracking-[0.18em] text-ink/70">
               taux de retour consigne actuel
-            </p>
-            <p className="mt-2 text-xs text-ink/55">
-              objectif 2027 : 35 %
             </p>
           </Reveal>
         </div>

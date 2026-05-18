@@ -1,9 +1,9 @@
 'use client';
-
 import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { basePath } from '@/lib/utils';
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -31,11 +31,11 @@ const fadeUp = {
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Parallax au scroll : l'image descend de 80px et scale jusqu'à 1.08
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
+
   const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
 
@@ -48,7 +48,7 @@ export function Hero() {
       {/* IMAGE HERO en parallax */}
       <motion.div style={{ y, scale }} className="absolute inset-0 z-0 will-change-transform">
         <Image
-          src="/images/products/hero-heritage-box.png"
+          src={`${basePath}/images/products/hero-heritage-box.png`}
           alt="Matchio Heritage Box · coffret cérémonial ouvert avec bol de matcha, chasen et chashaku"
           fill
           priority
@@ -57,7 +57,7 @@ export function Hero() {
           className="object-cover object-[80%_center] md:object-right"
         />
 
-        {/* Overlay desktop : sombre à gauche → transparent à droite */}
+        {/* Overlay desktop */}
         <div
           className="absolute inset-0 pointer-events-none hidden md:block"
           style={{
@@ -66,7 +66,7 @@ export function Hero() {
           }}
         />
 
-        {/* Overlay mobile : sombre du haut vers le bas */}
+        {/* Overlay mobile */}
         <div
           className="absolute inset-0 pointer-events-none md:hidden"
           style={{

@@ -55,7 +55,7 @@ export default async function ProductPage({ params }: PageProps) {
 
       <section className="bg-cream pt-4 pb-24">
         <div className="container-wide grid lg:grid-cols-2 gap-12 lg:gap-20">
-          <ProductGallery3D product={product} />
+          <ProductGallery3D productId={product.id} />
 
           <div className="lg:py-8">
             <Eyebrow>{product.category} · {product.unitLabel}</Eyebrow>

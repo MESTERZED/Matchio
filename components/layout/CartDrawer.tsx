@@ -86,7 +86,7 @@ export function CartDrawer() {
                     className="py-5 flex gap-4"
                   >
                     <div className="w-20 h-24 flex-shrink-0 relative overflow-hidden bg-cream-dark/30">
-                      <ProductImage product={product} size="card" />
+                      <ProductImage productId={product.id} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between gap-2">

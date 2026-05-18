@@ -52,7 +52,7 @@ export default function CartPage() {
  className="py-8 grid grid-cols-[100px_1fr] md:grid-cols-[140px_1fr_auto] gap-6 items-start"
  >
  <div className="aspect-[4/5] relative overflow-hidden bg-cream-dark/20">
- <ProductImage product={product} size="card" />
+ <ProductImage productId={product.id} className="w-full h-full object-cover" />
  </div>
 
  <div>
